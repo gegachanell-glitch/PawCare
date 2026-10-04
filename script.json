@@ -1,0 +1,112 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("PawCare loaded 🐾");
+
+
+    // =========================
+    // CARD ANIMATION
+    // =========================
+
+    const cards = document.querySelectorAll(
+        ".card, .price-card, .routine-card"
+    );
+
+    const observer = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = "1";
+
+                    entry.target.style.transform =
+                        "translateY(0)";
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+
+    cards.forEach(function (card) {
+
+        card.style.opacity = "0";
+
+        card.style.transform =
+            "translateY(30px)";
+
+        card.style.transition =
+            "opacity 0.6s ease, transform 0.6s ease";
+
+        observer.observe(card);
+
+    });
+
+
+    // =========================
+    // NAVIGATION
+    // =========================
+
+    const links =
+        document.querySelectorAll(".nav-links a");
+
+    links.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            console.log(
+                "Opened section:",
+                link.textContent
+            );
+
+        });
+
+    });
+
+
+    // =========================
+    // GOOGLE MAPS
+    // =========================
+
+    const mapButton =
+        document.querySelector(
+            ".location-info .main-button"
+        );
+
+    if (mapButton) {
+
+        mapButton.addEventListener(
+            "click",
+            function () {
+
+                console.log(
+                    "Opening Google Maps..."
+                );
+
+            }
+        );
+
+    }
+
+
+    // =========================
+    // CURRENT YEAR
+    // =========================
+
+    const copyright =
+        document.querySelector(".copyright");
+
+    if (copyright) {
+
+        copyright.textContent =
+            `© ${new Date().getFullYear()} PawCare. All rights reserved.`;
+
+    }
+
+});
